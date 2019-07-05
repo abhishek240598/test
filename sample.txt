@@ -1,0 +1,16 @@
+var payload = req.body;
+console.log(payload);
+var emailCheck = [payload.emailId];
+connection.query(" SELECT email FROM user WHERE `email` =?", emailCheck,function(error, results) {
+
+console.log(results.length);
+if (results.length != 0) {
+if (results[0].email == req.body.email) {
+console.log("can not be entered");
+return res.status(400).json({
+message: 'Email already exists',
+data: {
+}
+})
+}
+}
